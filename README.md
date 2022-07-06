@@ -1,5 +1,6 @@
 # BetterLeagueMusic
 Uses Spotify to play League of Legends music depending on your champion or game scenario.
+Run "Run BetterLeagueMusic.bat" to start the program.
 
 # Setting up the environment.txt file
 This file is used to that sensitive information is kept private for all users, if you are sharing this program, do NOT share a modified environment.txt file.
