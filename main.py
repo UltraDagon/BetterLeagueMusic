@@ -2,14 +2,16 @@ import os
 import time
 import requests
 import json
+import sys
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from riotwatcher import LolWatcher, ApiError
 
 # Load environment variables
-for env in open('environment.txt').readlines():
+for env in open(os.path.join(sys.path[0],'environment.txt')).readlines():
+    env = env.replace("\n", "")
     if 'Enabled:' in env:
-        if str(env[env.index(':')+1:].lower().replace("\n", "")) in ['false', 'f', '0']:
+        if str(env[env.index(':')+1:].lower()) in ['false', 'f', '0']:
             print("\'environment.txt\' is disabled. This can be changed within the file.")
             break
     else:
