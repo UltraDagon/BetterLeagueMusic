@@ -16,5 +16,5 @@ This can also be whatever you want, but MUST be set up in the SfD dashboard. Go 
 Your League of Legends username. NOT your Riot ID
 
 # Additional notes
-###Region is not NA1
+### Region is not NA1
 replace "my_region = 'na1'" with a region from [https://developer.riotgames.com/docs/lol#Platform%20Routing%20Values:~:text=Platform%20Routing%20Values](https://developer.riotgames.com/docs/lol#Platform%20Routing%20Values:~:text=Platform%20Routing%20Values)
