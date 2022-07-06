@@ -1,9 +1,10 @@
 # BetterLeagueMusic
 Uses Spotify to play League of Legends music depending on your champion or game scenario.
 Run "Run BetterLeagueMusic.bat" to start the program.
+When it prompts "Enter the URL you were redirected to: ", copy the url in your search bar and paste it into the command prompt and click enter.
 
 # Setting up the environment.txt file
-This file is used to that sensitive information is kept private for all users, if you are sharing this program, do NOT share a modified environment.txt file.
+This file is used to manage sensitive information and should be kept private, if you are sharing this program, do NOT share a modified environment.txt file.
 ### API_KEY
 This is your Riot API key for League of Legends. To get your key, go to [https://developer.riotgames.com/](https://developer.riotgames.com/), log in, and copy your token. You may have to regenerate it at the bottom.
 ### SPOTIPY_CLIENT_ID
