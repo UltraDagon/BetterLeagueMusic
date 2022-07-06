@@ -2,5 +2,4 @@ Enabled:False
 API_KEY=
 SPOTIPY_CLIENT_SECRET=
 SPOTIPY_REDIRECT_URI=https://www.google.com
-API_KEY=
 SUMMONER_NAME=
