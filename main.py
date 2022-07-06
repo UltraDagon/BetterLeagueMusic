@@ -75,9 +75,10 @@ ids = {'266': 'Aatrox', '103': 'Ahri', '84': 'Akali',
 
 summoner_name = os.environ.get('SUMMONER_NAME')
 # summoner_name =
-champion = 'None'
-old_champion = 'None'
+champion = ""
+old_champion = ""
 player = {'championId': 'None'}
+previous_game = -1
 
 # Spotify
 scope = "user-read-playback-state,user-modify-playback-state"
@@ -91,12 +92,15 @@ def play_song(search):
     spotify.repeat('context')
 
 
-def get_player_info():
+def get_player_info(gameId=False):
     me = watcher.summoner.by_name(my_region, summoner_name)
     url = f'https://{my_region}.api.riotgames.com/lol/spectator/v4/active-games/by-summoner/{me["id"]}?api_key={api_key}'
     current_game = json.loads(requests.get(url).text)
     if 'status' in current_game:
         return 'NoActiveGame'
+
+    if gameId:
+        return url[gameId]
 
     players = current_game["participants"]
     for p in players:
@@ -107,18 +111,28 @@ def get_player_info():
 sleep_time = 15
 while 1 == 1:
     player = get_player_info()
-    if spotify.current_playback() is None:
-        print("Please start and pause any song on Spotify to activate the session")
-        time.sleep(sleep_time)
-        continue
+    try:
+        if spotify.current_playback() is None:
+            print("Please start and pause any song on Spotify to activate the session")
+            time.sleep(sleep_time)
+            continue
+    except():
+        pass
 
     if player == 'NoActiveGame':
         print("No Active Game")
         old_champion = champion
         champion = "None"
-        if old_champion != champion:
+        if champion != old_champion:
+            print("Pausing playback")
             if spotify.current_playback()['is_playing']:
+                previous_game = get_player_info(gameId=True)
                 spotify.pause_playback()
+        time.sleep(sleep_time)
+        continue
+
+    if previous_game == get_player_info(gameId=True):
+        print("Riot API thinks you're still in last game, don't worry about it.")
         time.sleep(sleep_time)
         continue
 
