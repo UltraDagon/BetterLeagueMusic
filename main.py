@@ -114,10 +114,11 @@ while 1 == 1:
 
     if player == 'NoActiveGame':
         print("No Active Game")
-        if spotify.current_playback()['is_playing']:
-            spotify.pause_playback()
+        old_champion = champion
         champion = "None"
-        old_champion = "None"
+        if old_champion != champion:
+            if spotify.current_playback()['is_playing']:
+                spotify.pause_playback()
         time.sleep(sleep_time)
         continue
 
