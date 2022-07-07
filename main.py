@@ -6,6 +6,7 @@ import sys
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 from riotwatcher import LolWatcher, ApiError
+from datetime import datetime
 
 # Load environment variables
 for env in open(os.path.join(sys.path[0],'environment.txt')).readlines():
@@ -110,17 +111,18 @@ def get_player_info(gameId=False):
 
 sleep_time = 15
 while 1 == 1:
+    dtime = "["+str(datetime.now().strftime("%H:%M:%S"))+"] "
     player = get_player_info()
     try:
         if spotify.current_playback() is None:
-            print("Please start and pause any song on Spotify to activate the session")
+            print(dtime+"Please start and pause any song on Spotify to activate the session")
             time.sleep(sleep_time)
             continue
     except():
         pass
 
     if player == 'NoActiveGame':
-        print("No Active Game")
+        print(dtime+"No Active Game")
         old_champion = champion
         champion = "None"
         if champion != old_champion:
@@ -132,13 +134,13 @@ while 1 == 1:
         continue
 
     if previous_game == get_player_info(gameId=True):
-        print("Riot API thinks you're still in last game, don't worry about it.")
+        print(dtime+"Riot API thinks you're still in last game, don't worry about it.")
         time.sleep(sleep_time)
         continue
 
     old_champion = champion
     champion = ids[str(player["championId"])]
-    print("Current Champion: " + champion)
+    print(dtime+"Current Champion: " + champion)
     if old_champion != champion:
         play_song(champion)
         print("Now playing: "+champion)
