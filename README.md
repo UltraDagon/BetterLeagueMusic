@@ -20,3 +20,6 @@ Your League of Legends username. NOT your Riot ID
 # Additional notes
 ### Region is not NA1
 replace "my_region = 'na1'" with a region from [https://developer.riotgames.com/docs/lol#Platform%20Routing%20Values:~:text=Platform%20Routing%20Values](https://developer.riotgames.com/docs/lol#Platform%20Routing%20Values:~:text=Platform%20Routing%20Values)
+
+# Updating Versions
+As of now there is no auto updater, but once you install a more recent version, you can copy over your environment.txt and .cache file to the newest folder.
