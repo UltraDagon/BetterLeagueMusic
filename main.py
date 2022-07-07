@@ -101,7 +101,7 @@ def get_player_info(gameId=False):
         return 'NoActiveGame'
 
     if gameId:
-        return url[gameId]
+        return current_game["gameId"]
 
     players = current_game["participants"]
     for p in players:
@@ -132,6 +132,9 @@ while 1 == 1:
                 spotify.pause_playback()
         time.sleep(sleep_time)
         continue
+
+    print(previous_game)
+    print(get_player_info(gameId=True))
 
     if previous_game == get_player_info(gameId=True):
         print(dtime+"Riot API thinks you're still in last game, don't worry about it.")
